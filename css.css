@@ -1,0 +1,166 @@
+
+/* using root we can create variables with assigned value that can be used anywhere */
+/* by using 'var()' we access value in it from root */
+:root
+{
+    --primary-color: #008080;
+    --bgc-color:#f5f5f5;
+    --padding: 20px;
+    --text-color: #fff;
+    --border-radius: 5px;
+
+}
+
+/* whenever we start css always apply below to body */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header
+{
+    background-color: var(--primary-color);
+    padding: var(--padding);
+    color: var(--text-color);    
+    /* here we access declared variables from root */
+}
+
+header h1
+{
+    font-size: 36px;
+}
+
+/* in main we have 1 form & 1 div in which we are going to store result */
+main
+{
+    min-height: 76vh;
+    /* after this main section will get 76% height, so whatever below of main will be shift to last at 30% */
+    /* footer automatically get adjust according to main-height */
+        padding: var(--padding);
+    max-width: 800px;
+    /* when we zoom-in-out, it will take only 800px not more than it*/
+    margin: 0 auto;
+    /* margin vertical=0, horizontal=auto now it will be at center perfectly, right-left margin will be taken automatically */
+}   
+
+main form
+{
+    display: flex;
+    /* to make it at center & to use JCC we need to use DF */
+    justify-content: center;
+    /* now it will be in center horizontally */
+}
+    
+/* here we also select 'read more' button at last */
+form input[type="text"], button[type="submit"], .result div a
+{
+    border: none;
+    /* border of input & button both are removed */
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    padding: calc(var(--padding)/2);
+  /* using 'calculate' function we can give any value/ pass an variable
+     and make another value from it by ==> add/subtract/multiply/divide that value as above
+    here we have 'padding=20px' we divide it & assign 10px only */
+}
+
+form input[type="text"]
+{
+    flex-grow: 1;
+    /* input field will take all space horizontally in browser & button will take space as it needs only */
+}
+
+form button[type="submit"]
+{    
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+footer
+{
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: var(--padding);    
+    text-align: center;
+    /* text from the footer will be in center now */
+    font-size: 18px;
+    position: fixed;
+    /* as we don't need to move footer while scrolling we gave this property */
+    width: 100%;
+    /* just after make position as fixed, its width get reduced so we applied 100% on it */    
+    bottom: 0;
+    /* footer stick to bottom */
+    padding-bottom: 25px;
+}
+
+.result
+{
+    background-color: #fff;
+    padding: var(--padding);
+    border-radius: var(--border-radiu s);
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    /* result box will get highlighted by this */
+}
+
+.result p
+{
+    margin-top: 10px;    
+}
+
+/* below element is present in JS file from there we manipulate it */
+.result p[class="partOfSpeech"]
+{
+    font-style: italic;
+    color: #808080;
+    margin-top: 2px;
+}
+
+
+/* style applied to 'read more' button */
+.result div a
+{
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+/* by doing this 'read more' will get some space from result div */
+.result div
+{
+    margin-top: 20px;
+}
+
+/* applying style to antonym which is in list */
+.result li
+{
+    padding: calc(var(--padding)/6);
+    margin-left: 20px;
+}
+
+
+/* MEDIA QUERIES STARTS */
+
+@media screen and (max-width:320px)
+{
+    main form
+    {
+        flex-direction: column;
+    }
+    form button[type="submit"]
+    {
+        margin-left: 0px;
+        margin-top: 10px;
+    }    
+}
